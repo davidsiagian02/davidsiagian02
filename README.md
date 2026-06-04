@@ -11,9 +11,9 @@
 
 Halo! Saya seorang mahasiswa berusia 20 tahun yang saat ini sedang menempuh pendidikan semester 4 di program studi **Teknik Informatika, Politeknik Caltex Riau (PCR)**. Saya memiliki minat yang besar dalam pengembangan perangkat lunak dan selalu antusias untuk mempelajari teknologi baru.
 
-* 🔭 Saat ini sedang fokus pada: **[Pemrograman Web & Mobile Development]**
-* 🌱 Saat ini sedang mempelajari: **[React, Laravel, C#]**
-* 📫 Cara menghubungi saya: **[david24ti@mahasiswa.pcr.ac.id]**
+* 🔭 Saat ini sedang fokus pada: **Pemrograman Web & Mobile Development**
+* 🌱 Saat ini sedang mempelajari: **React, Laravel, C#**
+* 📫 Cara menghubungi saya: **david24ti@mahasiswa.pcr.ac.id**
 
 ---
 
