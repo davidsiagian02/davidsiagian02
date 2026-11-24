@@ -1,0 +1,56 @@
+# Taruh file ini di: .github/workflows/profile-cards.yml (di repo davidsiagian02/davidsiagian02)
+# Membuat kartu GitHub Stats, Top Languages, dan animasi snake ke folder profile/
+# Jalan otomatis setiap hari (sekitar 00:23 WIB), saat file ini di-commit, atau manual dari tab Actions.
+
+name: Update profile cards
+
+on:
+  schedule:
+    - cron: "23 17 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/profile-cards.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate stats card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&include_all_commits=true&hide_border=true&border_radius=10&bg_color=0D1117&title_color=38BDF8&icon_color=38BDF8&text_color=C9D1D9&ring_color=38BDF8&custom_title=GitHub%20Stats
+          path: profile/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: "true"
+
+      - name: Generate top languages card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&langs_count=8&hide_border=true&border_radius=10&bg_color=0D1117&title_color=38BDF8&text_color=C9D1D9
+          path: profile/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: "true"
+
+      - name: Generate snake animation
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            profile/snake.svg?palette=github-light&color_snake=#0EA5E9
+            profile/snake-dark.svg?palette=github-dark&color_snake=#38BDF8
+
+      - name: Commit cards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile/*.svg
+          git commit -m "Update profile cards" || exit 0
+          git push
